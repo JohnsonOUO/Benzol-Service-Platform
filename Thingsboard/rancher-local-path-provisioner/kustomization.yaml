@@ -1,0 +1,9 @@
+# kustomization.yml
+namespace: local-path-storage
+
+resources:
+  - github.com/rancher/local-path-provisioner/deploy?ref=v0.0.22
+
+patchesStrategicMerge:
+- config.yaml
+

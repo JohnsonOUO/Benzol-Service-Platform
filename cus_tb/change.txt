@@ -1,0 +1,6 @@
+/usr/share/tb-web-ui/web/public/thingsboard.ico
+/usr/share/tb-web-ui/web/public/index.html
+/usr/share/tb-web-ui/web/public/
+6610.d4aff11677762de06a14.js
+alpha -> logo_title
+style.css (OK)

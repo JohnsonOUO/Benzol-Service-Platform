@@ -1,0 +1,10 @@
+- op: replace
+  path: /spec/type
+  value: LoadBalancer
+- op: add
+  path: /spec/ports 
+  value:
+    - name: mqtt
+      port: 1883
+      targetPort: 1883
+      protocol: TCP
