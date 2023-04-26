@@ -105,6 +105,8 @@ sudo apt-get install mosquitto-clients
 ## test mqtt connection
 mosquitto_pub -d -q 1 -h "${ProxmoxIP}" -p "1883" -t "v1/devices/me/telemetry" -u "${AccessToken}" -m {"temperature":25}
 ```
+
+Then we can see the result on the web.
 ![](https://i.imgur.com/aTpWh4T.png)
 
 
@@ -115,6 +117,14 @@ mosquitto_pub -d -q 1 -h "${ProxmoxIP}" -p "1883" -t "v1/devices/me/telemetry" -
 ![](https://i.imgur.com/tqbr5Sp.png)
 *Then you can add widget to show your graphs and data.*
 <div STYLE="page-break-after: always;"></div>
+
+### Set Alarm
+If we want to set up alarm, we need to set a rule in device profile.
+![](https://i.imgur.com/H92xBQv.png)
+#### note: 
+* Device should use this device profile
+* If we create alarm rules, we must set a clear alarm rule.
+*(Otherwise, this rule will not warn mutiple times until you clear it manually.)*  
 
 ## Mock Device (OPTION)
 ### Introduction
