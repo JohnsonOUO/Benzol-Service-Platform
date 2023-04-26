@@ -211,7 +211,7 @@ The other file /etc/thingsboard-gateway/config/tb_gateway.yaml
 * remoteShell: true
 * accessToken: use your gateway device's token.
 
-After modifying fiels, we need to restart thingsboard-gateway
+After modifying files, we need to restart thingsboard-gateway
 ```script=
 ## Restart
 sudo systemctl restart thingsboard-gateway
@@ -245,7 +245,7 @@ systemctl status thingsboard-gateway
 
 ## Customize UI
 ### Introduction
-After we deploy the resource, we need to change something for our Benzol Service. We should modify files in the pod of web-ui.
+After we deploy the platform, we need to change css and html for our Benzol Service. We should modify files in the pod of web-ui.
 we can use kubecp to get the css file or you can use modified file in https://github.com/NinoX-RD/Benzol-Service-Platform.git/cus_tb
 ### Quick Changes
 ```script=
