@@ -21,7 +21,7 @@
 
 ## Set up k8s 
 ### Introduction
-Before we build Benzol service, we need a cloud system. We have many choices to build a cloud system(Minikube, k3s or k8s). In this document, I used talos on the proxmox for our private cloud. You can follow this https://github.com/JohnsonOUO/Edge-Cloud to build cloud.
+Before we build Benzol service, we need a cloud system. We have many choices to build a cloud system(Minikube, k3s or k8s). In this document, I used talos on the proxmox for our private cloud. You can follow this https://github.com/Ninox-RD/Edge-Cloud to build cloud.
 
 ## Deploy Thingsboard
 ### Introduction
@@ -29,25 +29,27 @@ In this steps, we will deploy storageClass, kafka, thingsboard, postgres, ingres
 We can follow instructions to deploy our service.
 ```script=
 ## Get resource
-git clone https://github.com/JohnsonOUO/ThingsBoard
+cd ~
+git clone https://github.com/NinoX-RD/Benzol-Service-Platform.git
 
 ## First we need to deploy StorageClass
-cd ~/Thingsboard/rancher-local-path-provisioner
+cd ~/Benzol-Service-Platform/Thingsboard/rancher-local-path-provisioner
 kubectl apply -k .
 
 ## Then we can deploy thingsboard
+cd ~/Benzol-Service-Platform/Thingsboard
 ./k8s-install-tb.sh --loadDemo ## wait for a few minutes
 ./k8s-deploy-thirdparty.sh
 ./k8s-deploy-resources.sh
 
 ## Set up others
-cd ~/Thingsboard/01-metallb
+cd ~/Benzol-Service-Platform/Thingsboard/01-metallb
 kubectl apply -k .
-cd ~/Thingsboard/02-nginx
+cd ~/Benzol-Service-Platform/Thingsboard/02-nginx
 kubectl apply -k .
-cd ~/Thingsboard/03-kubed
+cd ~/Benzol-Service-Platform/Thingsboard/03-kubed
 kubectl apply -k .
-cd ~/Thingsboard/04-cert-manager
+cd ~/Benzol-Service-Platform/Thingsboard/04-cert-manager
 kubectl apply -k .
 ```
 <div STYLE="page-break-after: always;"></div>
@@ -72,7 +74,7 @@ nano /etc/hosts
 In your Host
 ```script=
 nano /etc/hosts
-Proxmox_IP thingsboard.ninox
+10.1.2.168 thingsboard.ninox
 ```
 ## Account Info
 * System Administrator: 
@@ -118,7 +120,7 @@ Then we can see the result on the web.
 *Then you can add widget to show your graphs and data.*
 <div STYLE="page-break-after: always;"></div>
 
-### Set Alarm
+### Set Alarm rule
 If we want to set up alarm, we need to set a rule in device profile.
 ![](https://i.imgur.com/H92xBQv.png)
 #### note: 
@@ -131,9 +133,9 @@ If we want to set up alarm, we need to set a rule in device profile.
 Here is the transmission of data to simulate edge devices.
 There are two different code to do the same thing.
 1. Python (prefer)
-From github: https://github.com/JohnsonOUO/ThingsBoard
+In .Benzol-Service-Platform/Thingsboard/Mock/mqtt.py
 ```script=
-cd Thingsboard/Mock
+cd ~/Benzol-Service-Platform/Thingsboard/Mock
 python3 mqtt.py
 ```
 In this python file , we need to modify several settings.
@@ -244,16 +246,15 @@ systemctl status thingsboard-gateway
 ## Customize UI
 ### Introduction
 After we deploy the resource, we need to change something for our Benzol Service. We should modify files in the pod of web-ui.
-we can use kubecp to get the css file or you can use modified file in https://github.com/JohnsonOUO/cus_tb
+we can use kubecp to get the css file or you can use modified file in https://github.com/NinoX-RD/Benzol-Service-Platform.git/cus_tb
 ### Quick Changes
 ```script=
-git clone https://github.com/JohnsonOUO/cus_tb.git
-cd cus_tb
+cd ~/Benzol-Service-Platform/cus_tb
 ## Get web-ui pod name
 kubectl get po (find web-ui name)
 
 ## replace $name in kubecp.sh with new web-ui name
-nano cus_tb/kubecp.sh
+nano ~/Benzol-Service-Platform/cus_tb/kubecp.sh
 bash kubecp.sh
 
 ## access web-ui pod
