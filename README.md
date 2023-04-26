@@ -9,7 +9,7 @@
 * Mock Device connection
 * OTA update
 * IoT Gateway
-* Customize UIs
+* Customize UI
 ### Version
 * Proxmox v7.2
 * kubernetes v1.22.8
@@ -21,11 +21,11 @@
 
 ## Set up k8s 
 ### Introduction
-Before we build Benzol service, we need a cloud system. We have many choices to build a cloud system(Minikube, k3s or k8s). In this document, I used talos on the proxmox for our private cloud. You can follow this https://github.com/Ninox-RD/Edge-Cloud to build cloud.
+Before we build Benzol service, we need a cloud system. We have many choices to build a cloud system(Minikube, k3s or k8s). In this document, I used talos on the proxmox for our private cloud. You can follow this https://github.com/Ninox-RD/Edge-Cloud to build a cloud.
 
 ## Deploy Thingsboard
 ### Introduction
-In this steps, we will deploy storageClass, kafka, thingsboard, postgres, ingress and so on in this step.
+In this step, we will deploy storageClass, kafka, thingsboard, postgres, ingress and so on in this step.
 We can follow instructions to deploy our service.
 ```script=
 ## Get resource
@@ -56,15 +56,15 @@ kubectl apply -k .
 
 ## Setting Connection
 ### Introduction 
-Because we use kubernetes as a cloud management, Our computer can not connect to our service directly. Hence, we only can connect to Proxmox and we can set up iptables on Proxmox to do prerouting to our services.
+Because we used kubernetes as a cloud management, Our computer can not connect to our service directly. Hence, we can only connect to Proxmox and we set up ip rules(iptables) on Proxmox to do prerouting to our services.
 Port 80, 443 is for http and https. Port 1883 is for mqtt transport. 
 ```script=
-## Open port
+## Create Rule
 iptables -t nat -A PREROUTING -i wlp2s0 -p tcp --dport 80 -j DNAT --to 10.20.0.210
 iptables -t nat -A PREROUTING -i wlp2s0 -p tcp --dport 443 -j DNAT --to 10.20.0.210
 iptables -t nat -A PREROUTING -i wlp2s0 -p tcp --dport 1883 -j DNAT --to 10.20.0.210
 
-## Delete port (If you set a wrong rule, you can delete this rule)
+## Delete Rules (If you set a wrong rule, you can delete this rule)
 iptables -t nat -D PREROUTING -i wlp2s0 -p tcp --dport 80 -j DNAT --to 10.20.0.210
 
 ## Set DNS
@@ -89,9 +89,9 @@ customer@thingsboard.org / customer
 
 ## Benzol Service Operation
 ### Introduction
-After service is deployed, we want to collect edge's data and show on the screen. Thus, We need to set up a device to accept telemetry, then we can show data on the dashboard.
+After the service platform is deployed, we want to collect edge telemetrics and show them on the screen. Thus, We should set up a device to accept telemetry, then we can show data on the dashboard.
 Reference: https://thingsboard.io/docs/getting-started-guides/helloworld/?connectdevice=mqtt-linux
-### Create device
+### Create Device
 ![](https://i.imgur.com/u37WbZ3.png)
 *set name and profile(defualt or set by youself)*
 ![](https://i.imgur.com/nLvwqVJ.png)
@@ -234,7 +234,7 @@ payload = {"serialNumber":"AutoCar","sensorType":"Car","sensorModel":"Yolo","hum
 print(json.dumps(payload))
 client.publish("/sensor/date",json.dumps(payload),qos=1)
 ```
-Then we can see service will create a new device with telemetrics.
+Then we can see service will create a new device with thoose telemetrics.
 #### Debug
 If you want to see more Info
 ```script=
