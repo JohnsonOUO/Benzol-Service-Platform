@@ -271,7 +271,7 @@ cp modify_6610 web/publish/6610.XXXXXXXXX.js
 ```
 ## Details about web-ui (Option)
 If you want to change color , picrute or name you can use followings to do your modifications.
-"mat-toolbar.mat-primary 1/6" means use Alt+F find the sentance "mat-toolbar.mat-primary" matches 6,and we will use the 1st match.
+"mat-toolbar.mat-primary 1/6" means use Alt+F find the sentance "mat-toolbar.mat-primary" matches 6,and we will change a color in the 1st match.
 ### Change primary toolbar color
 In web/public/style.css 
 find the "mat-toolbar.mat-primary 1/6"
