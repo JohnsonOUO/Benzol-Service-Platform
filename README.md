@@ -10,6 +10,7 @@
 * OTA update
 * IoT Gateway
 * Customize UI
+* Reboot System
 ### Version
 * Proxmox v7.2
 * kubernetes v1.22.8
@@ -21,7 +22,8 @@
 
 ## Set up k8s 
 ### Introduction
-Before we build Benzol service, we need a cloud system. We have many choices to build a cloud system(Minikube, k3s or k8s). In this document, I used talos on the proxmox for our private cloud. You can follow this https://github.com/Ninox-RD/Edge-Cloud to build a cloud.
+Before we build Benzol service, we need a cloud system. We have many choices to build a cloud system(Minikube, k3s or k8s). In this document, I used talos on the proxmox for our private cloud. You can follow this https://github.com/Ninox-RD/Edge-Cloud to build a cloud.(00-Prepare、01-VMCluster)
+
 
 ## Deploy Thingsboard
 ### Introduction
@@ -79,7 +81,7 @@ nano /etc/hosts
 ## Account Info
 * System Administrator: 
 sysadmin@thingsboard.org / sysadmin
-If you installed DataBase with demo data (using --loadDemo flag) you can also use the following credentials:
+> If you installed DataBase with demo data (using --loadDemo flag) you can also use the following credentials
 
 * Tenant Administrator: 
 tenant@thingsboard.org / tenant
@@ -297,3 +299,40 @@ change /usr/share/tb-web-ui/web/public/assets/logo_title_white.svg
 ### Change web icon
 In web/public/thingsboard.ico
 change /usr/share/tb-web-ui/web/public/thingsboard.ico
+
+## Reboot System
+If your nodes are shutdown, we have two ways to restart nodes.
+* Proxmox
+* Terraform
+
+### Proxmox
+Open the proxmox website. Choose each vm and click "start".
+In the script.
+```script=
+qm start vm_id
+```
+### Terraform
+We need to check main.tf pm_api_url is correct or not first. Then use terraform to rebuild.
+```script=
+## check api_url
+nano ~/Edge-Cloud/01-VMCluster/main.tf
+## rebuild
+terraform apply 
+```
+There is a issue we met before, but we can not reproduce it.
+When we wanted to restart the node and we did not change api_url, the command "terraform apply" was failed and showed the error like this.
+```
+╷
+│ Error: Plugin did not respond
+│ 
+│   with module.scope.aws_vpc_ipam_scope.vpc_ipam_scope,
+│   on ../../terraform-modules/terraform-aws-vpc-ipam-scope/main.tf line 12, in resource "aws_vpc_ipam_scope" "vpc_ipam_scope":
+│   12: resource "aws_vpc_ipam_scope" "vpc_ipam_scope" {
+│ 
+│ The plugin encountered an error, and failed to respond to the plugin.(*GRPCProvider).ReadResource call. The plugin logs may contain more details.
+```
+I thought that provider which was changed caused a problem. I found a method to solve this problem. we could use
+```
+terraform state replace-provider OLD_PROVIDER NEW_PROVIDER
+```
+Reference: https://github.com/hashicorp/terraform/blob/main/website/docs/cli/commands/state/replace-provider.mdx
