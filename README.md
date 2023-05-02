@@ -259,18 +259,6 @@ kubectl get po (find web-ui name)
 ## replace $name in kubecp.sh with new web-ui name
 nano ~/Benzol-Service-Platform/cus_tb/kubecp.sh
 bash kubecp.sh
-
-## access web-ui pod
-kubectl exec -it pod/${pod_name} -- bash
-
-##put modified files to each origin place.
-cp modify_6610 web/publish/6610.XXXXXXXXX.js
-- modify_6610 -> web/publish/6610.XXXXXXXXX.js
-- modify_index -> web/publish/indes.XXXXXXX.html
-- modify_main -> web/publish/main.XXXXXXX.js
-- modify_style -> web/publish/style.XXXXXXX.css
-- thingsboard.ico -> web/publish/thingsboard.ico
-- alpha_svg -> web/publish/assets/logo_title_white.svg
 ```
 ## Details about web-ui (Option)
 If you want to change color , picrute or name you can use followings to do your modifications.
