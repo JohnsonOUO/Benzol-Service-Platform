@@ -312,7 +312,7 @@ In the script.
 qm start vm_id
 ```
 ### Terraform
-We need to check main.tf pm_api_url is correct or not first. Then use terraform to rebuild.
+We need to check main.tf pm_api_url is the same as your proxmox_ip first. Then use terraform to rebuild.
 ```script=
 ## check api_url
 nano ~/Edge-Cloud/01-VMCluster/main.tf
@@ -321,7 +321,7 @@ terraform apply
 ```
 There is a issue we met before, but we can not reproduce it.
 When we wanted to restart the node and we did not change api_url, the command "terraform apply" was failed and showed the error like this.
-```
+```script=
 ╷
 │ Error: Plugin did not respond
 │ 
@@ -332,7 +332,8 @@ When we wanted to restart the node and we did not change api_url, the command "t
 │ The plugin encountered an error, and failed to respond to the plugin.(*GRPCProvider).ReadResource call. The plugin logs may contain more details.
 ```
 I thought that provider which was changed caused a problem. I found a method to solve this problem. we could use
-```
+```script=
 terraform state replace-provider OLD_PROVIDER NEW_PROVIDER
 ```
+Maybe it will work.
 Reference: https://github.com/hashicorp/terraform/blob/main/website/docs/cli/commands/state/replace-provider.mdx
