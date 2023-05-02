@@ -1,6 +1,0 @@
-./k8s-install-tb.sh --loadDemo
-./k8s-deploy-thirdparty.sh
-./k8s-deploy-resources.sh
-系統管理員：sysadmin@thingsboard.org / sysadmin
-租戶管理員：tenant@thingsboard.org / tenant
-客戶用戶：customer@thingsboard.org / customer
