@@ -146,7 +146,8 @@ broker_addr = "10.1.2.168" ## your IP
 client.username_pw_set("55688") ## your device token
 ```
 2. Java
-Reference: https://bytesofgigabytes.com/thingsboard/sending-data-to-thingsboard-using-java/
+
+  Reference: https://bytesofgigabytes.com/thingsboard/sending-data-to-thingsboard-using-java/
 
 ![](https://i.imgur.com/RUOASS4.png)
 <div STYLE="page-break-after: always;"></div>
