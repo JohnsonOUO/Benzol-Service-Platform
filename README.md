@@ -10,7 +10,7 @@
 * OTA update
 * IoT Gateway
 * Customize UI
-* Reboot System
+* Restart System
 ### Version
 * Proxmox v7.2
 * kubernetes v1.22.8
@@ -300,7 +300,7 @@ change /usr/share/tb-web-ui/web/public/assets/logo_title_white.svg
 In web/public/thingsboard.ico
 change /usr/share/tb-web-ui/web/public/thingsboard.ico
 
-## Reboot System
+## Restart System
 If your nodes are shutdown, we have two ways to restart nodes.
 * Proxmox
 * Terraform
