@@ -8,3 +8,13 @@
       port: 1883
       targetPort: 1883
       protocol: TCP
+    - appProtocol: http
+      name: http
+      port: 80
+      protocol: TCP
+      targetPort: http
+    - appProtocol: https
+      name: https
+      port: 443
+      protocol: TCP
+      targetPort: https

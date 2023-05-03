@@ -6,4 +6,6 @@ metadata:
     app.kubernetes.io/part-of: ingress-nginx
   name: tcp-services
   namespace: ingress-nginx
-  
+data:
+  1883: thingsboard/tb-mqtt-transport:1883
+
