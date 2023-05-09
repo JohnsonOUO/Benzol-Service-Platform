@@ -327,7 +327,7 @@ spec:
       containers:
       - name: server
         imagePullPolicy: Always
-        image: thingsboard/tb-web-ui:3.4.4
+        image: chriskewis/tb-web-ui:3.4.4
         ports:
         - containerPort: 8080
           name: http
