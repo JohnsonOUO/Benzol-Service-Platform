@@ -9,7 +9,6 @@
 * Mock Device connection
 * OTA update
 * IoT Gateway
-* Customize UI
 * Restart System
 ### Version
 * Proxmox v7.2
@@ -111,49 +110,6 @@ mosquitto_pub -d -q 1 -h "${ProxmoxIP}" -p "1883" -t "v1/devices/me/telemetry" -
 
 Then we can see the result on the web.
 ![](https://i.imgur.com/aTpWh4T.png) 
-
-## Customize UI
-### Introduction
-After we deploy the platform, we need to change css and html for our Benzol Service. We should modify files in the pod of web-ui.
-we can use kubecp to get the css file or you can use modified file in https://github.com/NinoX-RD/Benzol-Service-Platform.git/cus_tb
-### Quick Changes
-```script=
-cd ~/Benzol-Service-Platform/cus_tb
-## Get web-ui pod name
-kubectl get po (find web-ui name)
-
-## replace $name in kubecp.sh with new web-ui name
-nano ~/Benzol-Service-Platform/cus_tb/kubecp.sh
-bash kubecp.sh
-```
-## Details about web-ui (Option)
-If you want to change color , picrute or name you can use followings to do your modifications.
-"mat-toolbar.mat-primary 1/6" means use Alt+F find the sentance "mat-toolbar.mat-primary" matches 6,and we will change a color in the 1st match.
-### Change primary toolbar color
-In web/public/style.css 
-find the "mat-toolbar.mat-primary 1/6"
-### Change dashboard toolbar color
-In web/public/style.css 
-find the ".tb-default mat-fab-toolbar .mat-fab-toolbar-background  1/5"
-### Change home button color
-In web/public/style.css 
-find the "mat-raised-button.mat-primary 3/10"
-mat-raised-button.mat-primary
-### Change web head name
-In web/public/index.html
-find body->title
-### Remove Watermark
-In web/public/6610.js
-find "ut.thingsboardVersion" delete those words
-### Change web destination URL
-In web/public/main.js
-find "thingsboard.io" replace all of them with ninox.ai
-### Change logo picture
-In web/public/assets/logo_title_white.svg
-change /usr/share/tb-web-ui/web/public/assets/logo_title_white.svg
-### Change web icon
-In web/public/thingsboard.ico
-change /usr/share/tb-web-ui/web/public/thingsboard.ico
 
 ## Restart System
 If your nodes are shutdown, we have two ways to restart nodes.
