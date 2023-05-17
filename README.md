@@ -82,13 +82,13 @@ nano /etc/hosts
 ```
 ## Account Info
 * System Administrator: 
-sysadmin@thingsboard.org / sysadmin
+sysadmin@ninox.ai / sysadmin
 > If you installed DataBase with demo data (using --loadDemo flag) you can also use the following credentials
 
 * Tenant Administrator: 
-tenant@thingsboard.org / tenant
+tenant@ninox.ai / tenant
 * Customer User: 
-customer@thingsboard.org / customer
+customer@ninox.ai / customer
 <div STYLE="page-break-after: always;"></div>
 ## MQTT Test
 We will create a device first.
