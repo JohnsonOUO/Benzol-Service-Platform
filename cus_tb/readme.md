@@ -13,8 +13,8 @@ Before packaging, we need to install maven first. If you have already installed 
 mvn -v
 ```
 ## How to Package
-Here, we will **learn how to package** first in order to ensure the source code is worked.
-If we want to change the web ui. Hence, **we need to repackage ui-ngx and msa folder after you modify those files.**
+Here, we will **learn how to package** first in order to ensure the source code is worked.If we want to change the web ui. Hence, **we need to repackage ui-ngx and msa folder after you modify those files.**
+
 **Note:** 
   Because msa will use the package which created by ui-ngx, we should package ui-ngx first.
 ```
