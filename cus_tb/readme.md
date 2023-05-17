@@ -5,7 +5,7 @@ First, we will customize before we package it. The other one is after we package
 We need to get resources from thingsboard github.
 ```script=
 cd ~
-git clone https://github.com/thingsboard/thingsboard.git -b release3.4
+git clone https://github.com/thingsboard/thingsboard.git -b release-3.4
 ```
 Before packaging, we need to install maven first. If you have already installed it, you can use it to check version.
 ```script=
