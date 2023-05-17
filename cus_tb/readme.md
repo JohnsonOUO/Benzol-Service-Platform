@@ -16,7 +16,7 @@ mvn -v
 We want to change the web ui. Hence, we need to repackage ui-ngx and msa folder.
 Because msa will use the package which created by ui-ngx, we will package ui-ngx first.
 ```
-cd ~/thingsboardui-ngx
+cd ~/thingsboard/ui-ngx
 mvn clean install -DskipTests=true
 ```
 Then, we can package msa folder
