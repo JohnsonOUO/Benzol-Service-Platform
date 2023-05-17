@@ -13,8 +13,10 @@ Before packaging, we need to install maven first. If you have already installed 
 mvn -v
 ```
 ## How to Package
-We want to change the web ui. Hence, we need to repackage ui-ngx and msa folder.
-Because msa will use the package which created by ui-ngx, we will package ui-ngx first.
+Here, we will **learn how to package** first in order to ensure the source code is worked.
+If we want to change the web ui. Hence, **we need to repackage ui-ngx and msa folder after you modify those files.**
+**Note:** 
+  Because msa will use the package which created by ui-ngx, we should package ui-ngx first.
 ```
 cd ~/thingsboard/ui-ngx
 mvn clean install -DskipTests=true
@@ -32,16 +34,16 @@ docker images
 ## Modify before Package
 Now we can customize our ui, and repackage ui-ngx and mas. Then we can get our web-ui image.
 ### Primary Color
-In ui-ngx/src/theme.scss
+In  ~/thingsboard/ui-ngx/src/theme.scss
 find $tb-primary-color
 ### Web icon
-In ui-ngx/src
-change thingsboard.ico
+In ~/thingsboard/ui-ngx/src
+replace thingsboard.ico with your comapny icon.
 ### Web Logo
-In ui-ngx/src/assets
-change logo_title_white.svg
+In ~/thingsboard/ui-ngx/src/assets
+replace logo_title_white.svg with your company logo.
 ### Dashboard toolbar color
-In ui-ngx/src/them.scss
+In ~/thingsboard/ui-ngx/src/them.scss
 find
 ```css=
 &.mat-primary {
@@ -61,34 +63,34 @@ replace  mat.get-color-from-palette($primary) with #3a263a
     }
 ```
 ### Remove watermark
-In ui-ngx/src/app/modules/home/components/dashboard-page/dashboard-page.component.html
+In ~/thingsboard/ui-ngx/src/app/modules/home/components/dashboard-page/dashboard-page.component.html
 find "Power" and remove it.
 ### Change help website
-In ui-ngx/src/app/shared/components/logo.component.ts
+In ~/thingsboard/ui-ngx/src/app/shared/components/logo.component.ts
 replace thingsboard with ninox.ai
 ## Modify after Package
 ### Change primary toolbar color
-In web/public/style.css 
+In {YOUR_WORKDIR}/web/public/style.css 
 find the "mat-toolbar.mat-primary 1/6"
 ### Change dashboard toolbar color
-In web/public/style.css 
+In {YOUR_WORKDIR}/web/public/style.css 
 find the ".tb-default mat-fab-toolbar .mat-fab-toolbar-background  1/5"
 ### Change home button color
-In web/public/style.css 
+In {YOUR_WORKDIR}/web/public/style.css 
 find the "mat-raised-button.mat-primary 3/10"
 mat-raised-button.mat-primary
 ### Change web head name
-In web/public/index.html
+In {YOUR_WORKDIR}/web/public/index.html
 find body->title
 ### Remove Watermark
-In web/public/6610.js
+In {YOUR_WORKDIR}/web/public/6610.js
 find "ut.thingsboardVersion" delete those words
 ### Change web destination URL
-In web/public/main.js
+In {YOUR_WORKDIR}/web/public/main.js
 find "thingsboard.io" replace all of them with ninox.ai
 ### Change logo picture
-In web/public/assets/logo_title_white.svg
+In {YOUR_WORKDIR}/web/public/assets/logo_title_white.svg
 change /usr/share/tb-web-ui/web/public/assets/logo_title_white.svg
 ### Change web icon
-In web/public/thingsboard.ico
+In {YOUR_WORKDIR}/web/public/thingsboard.ico
 change /usr/share/tb-web-ui/web/public/thingsboard.ico
